@@ -35,9 +35,20 @@ if chose == '2':
     childchose = int(childchose)
     if childchose == 1:
         fuc.chosemean(maxnum);
-
+    elif childchose ==2:
+        pass
+    elif childchose ==3:
+        pass
+    elif childchose ==4:
+        pass
+    else:
+        print '输入错误'
 
 elif chose =='1':
+    print '输入路径地址:'
+    path = raw_input()
+    fuc.readinsertdata(path)
+
     pass
 else:
     print '错误输入'

@@ -1,6 +1,7 @@
 #coding=utf-8
 from database import Database
 from table_opt import Table_opt
+import filelib
 import random
 
 #随机生成一条选项
@@ -55,6 +56,7 @@ def generchose(data,indextrue ,mean ,id):
 def chosemean(maxnum):
     opt = Table_opt()
     data = opt.randfind(maxnum)
+    ary = []
     for index in data:
         print index[1]
         #生成正确选项
@@ -64,7 +66,9 @@ def chosemean(maxnum):
         chose = input("选择正确的选项:")
         if chose == realnum:
             print '\033[1;32m 正确 \033[0m'+'\n'
+            ary.append(1)
         else:
+            ary.append(0)
             print '\033[1;35m 错误 \033[0m'
 
             print '意思为:',
@@ -72,3 +76,22 @@ def chosemean(maxnum):
             print index[4]
 
             print ''
+    showallword(data,ary)
+
+def readinsertdata(path):
+    opt = Table_opt()
+    text =  filelib.readfile(path)
+    dct = filelib.findcode(text)
+    #opt = Table_opt()
+    for key in dct:
+        opt.insert(key,dct[key])
+    print '文件读取录入完毕'
+
+def showallword(data,ary):
+    num = 0
+    for index in data:
+        if ary[num] == 0:
+            print ('\033[1;35m%-50s%-50s\033[0m'%(index[1],index[4]))
+        else:
+            print ('%-50s%-50s'%(index[1],index[4]))
+        num = num+1
