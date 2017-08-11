@@ -20,6 +20,11 @@ def findcode(text):
     match2 = pattern.findall(text)
     res = {}
     if len(match)!=len(match2):
+        print '不匹配'
+        print match
+        print match2
+        print len(match)
+        print len(match2)
         exit(1)
     else:
         for i in range(len(match)):
